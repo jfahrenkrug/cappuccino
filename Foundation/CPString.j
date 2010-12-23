@@ -385,6 +385,21 @@ var CPStringRegexSpecialCharacters = [
 
 //Replacing Substrings
 
+- (CPString)stringByUnescapingHTMLEntities
+{
+    var e = document.createElement('div');
+    e.innerHTML = self;
+    return e.childNodes[0].nodeValue;
+}
+
+
+- (CPString)stringByEscapingHTMLEntities
+{
+    var e = document.createElement('div');
+    e.innerText = self;
+    return e.innerHTML;
+}
+
 - (CPString)stringByEscapingRegexControlCharacters
 {
     return self.replace(CPStringRegexEscapeExpression, "\\$1");

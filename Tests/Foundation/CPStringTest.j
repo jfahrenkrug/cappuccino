@@ -362,4 +362,18 @@
     [self assert:[str copy] equals:str];
     [self assert:[str copy] equals:[str copy]];
 }
+
+- (void)testStringByUnescapingHTMLEntities
+{
+    var str = "one is &lt; two &amp; five is &gt; four.";
+    [self assert:"one is < two & five is > four." equals:[str stringByUnescapingHTMLEntities]];
+}
+
+- (void)testStringByEscapingHTMLEntities
+{
+    var str = "one is < two & five is > four."; 
+    [self assert:"one is &lt; two &amp; five is &gt; four." equals:[str stringByEscapingHTMLEntities]];
+}
+
+
 @end
